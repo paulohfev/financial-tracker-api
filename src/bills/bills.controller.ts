@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Bill } from './bill.model';
 import { BillsService } from './bills.service';
+import { CreateBillDto } from './dto/create-bill.dto';
 
 @Controller('bills')
 export class BillsController {
@@ -12,11 +13,7 @@ export class BillsController {
   }
 
   @Post()
-  createBill(
-    @Body('title') title: string,
-    @Body('description') description: string,
-    @Body('value') value: number,
-  ): Bill {
-    return this.billService.createBill(title, description, value);
+  createBill(@Body() createBillDto: CreateBillDto): Bill {
+    return this.billService.createBill(createBillDto);
   }
 }

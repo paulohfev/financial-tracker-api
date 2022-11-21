@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Bill } from './bill.model';
 import { v4 as uuid } from 'uuid';
+import { CreateBillDto } from './dto/create-bill.dto';
 
 @Injectable()
 export class BillsService {
@@ -11,7 +12,9 @@ export class BillsService {
     return this.bills;
   }
 
-  createBill(title: string, description: string, value: number): Bill {
+  createBill(createBillDto: CreateBillDto): Bill {
+    const { title, description, value } = createBillDto;
+
     const bill: Bill = {
       id: uuid(),
       title,

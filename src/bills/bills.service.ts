@@ -15,15 +15,6 @@ export class BillsService {
   }
 
   async createBill(createBillDto: CreateBillDto): Promise<Bill> {
-    const { title, description, value } = createBillDto;
-
-    const bill = this.billsRepository.create({
-      title,
-      description,
-      value,
-    });
-
-    await this.billsRepository.save(bill);
-    return bill;
+    return await this.billsRepository.createBill(createBillDto);
   }
 }

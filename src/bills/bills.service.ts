@@ -1,28 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { Bill } from './bill.model';
-import { v4 as uuid } from 'uuid';
+import { Bill } from './bill.entity';
 import { CreateBillDto } from './dto/create-bill.dto';
+import { BillsRepository } from './bills.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BillsService {
-  // @TODO remove temporary local saving. Connect to DB
-  private bills: Bill[] = [];
-
-  getAllBills(): Bill[] {
-    return this.bills;
+  constructor(
+    @InjectRepository(BillsRepository)
+    private billsRepository: BillsRepository,
+  ) {}
+  async getAllBills(): Promise<Bill[]> {
+    return await this.billsRepository.getBills();
   }
 
-  createBill(createBillDto: CreateBillDto): Bill {
-    const { title, description, value } = createBillDto;
-
-    const bill: Bill = {
-      id: uuid(),
-      title,
-      description,
-      value,
-    }
-
-    this.bills.push(bill);
-    return bill;
+  async createBill(createBillDto: CreateBillDto): Promise<Bill> {
+    return await this.billsRepository.createBill(createBillDto);
   }
 }

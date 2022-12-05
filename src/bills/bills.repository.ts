@@ -28,4 +28,8 @@ export class BillsRepository extends Repository<Bill> {
     await this.save(bill);
     return bill;
   }
+
+  async deleteBill(id: string): Promise<void> {
+    await this.delete(id);
+  }
 }

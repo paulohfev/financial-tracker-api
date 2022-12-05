@@ -17,4 +17,8 @@ export class BillsService {
   async createBill(createBillDto: CreateBillDto): Promise<Bill> {
     return await this.billsRepository.createBill(createBillDto);
   }
+
+  async deleteBill(id: string): Promise<void> {
+    return await this.billsRepository.deleteBill(id);
+  }
 }

@@ -6,10 +6,8 @@ import { BillsRepository } from './bills.repository';
 import { BillsService } from './bills.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Bill])
-  ],
+  imports: [TypeOrmModule.forFeature([Bill])],
   controllers: [BillsController],
-  providers: [BillsService, BillsRepository]
+  providers: [BillsService, BillsRepository],
 })
 export class BillsModule {}

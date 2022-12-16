@@ -14,6 +14,10 @@ export class BillsService {
     return await this.billsRepository.getBills();
   }
 
+  async getBillById(id: string): Promise<Bill> {
+    return await this.billsRepository.getBillById(id);
+  }
+
   async createBill(createBillDto: CreateBillDto): Promise<Bill> {
     return await this.billsRepository.createBill(createBillDto);
   }

@@ -16,6 +16,11 @@ export class BillsRepository extends Repository<Bill> {
     return bills;
   }
 
+  async getBillById(id: string): Promise<Bill> {
+    const found = await this.findOne({ where: { id }});
+    return found;
+  }
+
   async createBill(createBillDto: CreateBillDto): Promise<Bill> {
     const { title, description, value } = createBillDto;
 

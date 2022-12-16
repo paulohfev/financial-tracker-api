@@ -12,6 +12,11 @@ export class BillsController {
     return this.billService.getAllBills();
   }
 
+  @Get('/:id')
+  getBillById(@Param('id') id: string): Promise<Bill> {
+    return this.billService.getBillById(id);
+  }
+
   @Post()
   createBill(@Body() createBillDto: CreateBillDto): Promise<Bill> {
     return this.billService.createBill(createBillDto);

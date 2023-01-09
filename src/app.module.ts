@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { BillsModule } from './bills/bills.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       envFilePath: ['.env'],
     }),
     BillsModule,
+    AuthModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
